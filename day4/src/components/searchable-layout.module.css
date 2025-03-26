@@ -1,0 +1,24 @@
+.searchBar {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.input {
+  color: gray;
+  background-color: transparent;
+  border: 1px solid dimgray;
+  flex-grow: 1;
+  padding: 15px;
+}
+
+.searchBtn {
+    background-color: rgb(69, 69, 69);
+    width: 80px;;
+    color: white;
+    border: none;
+    padding: 0 10px;
+    cursor: pointer;
+}

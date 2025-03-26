@@ -1,21 +1,18 @@
-import Image from "next/image";
-import localFont from "next/font/local";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import SearchableLayout from "@/components/searchable-layout";
+import { ReactNode } from "react";
 
 export default function Home() {
   return (
     <>
-        <h1>ONEBITE - CINEMA</h1>
+        <h1>ONEBITE - CINEMA 메인 페이지</h1>
     </>
   );
+}
+
+Home.getLayout = (page : ReactNode) => {
+    return (
+        <SearchableLayout>
+            {page}
+        </SearchableLayout>
+    )
 }
