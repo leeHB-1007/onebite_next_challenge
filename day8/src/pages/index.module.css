@@ -1,0 +1,18 @@
+.container {
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    gap: 20px;
+}
+
+.recommended {
+    display: flex;
+    gap: 10px;
+}
+
+.movies {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 가로로 5개씩 배치 */
+    gap: 5px;
+}
