@@ -1,6 +1,6 @@
 import React from "react";
 
-export default async function search({
+export default async function Search({
   searchParams,
 }: {
   searchParams: { q?: string };
