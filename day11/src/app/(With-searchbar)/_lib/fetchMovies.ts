@@ -1,4 +1,3 @@
-
 import { MovieData } from '@/types';
 
 // MSW 초기화 대기 함수
@@ -55,7 +54,21 @@ export async function searchMovies(query: string): Promise<MovieData[]> {
     return [];
   }
   
-  const response = await fetch(`/api/movies/search?query=${encodeURIComponent(query)}`);
+  // 서버와 클라이언트 환경 모두에서 작동하는 URL 생성
+  let url: string;
+  
+  // 서버 환경에서는 절대 URL 필요
+  if (typeof window === 'undefined') {
+    // 서버 사이드: 절대 URL 사용
+    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000';
+    url = `${baseUrl}/api/movies/search?query=${encodeURIComponent(query)}`;
+  } else {
+    // 클라이언트 사이드: 상대 URL 사용
+    url = `/api/movies/search?query=${encodeURIComponent(query)}`;
+  }
+  
+  console.log('🔍 검색 요청 URL:', url);
+  const response = await fetch(url);
   
   if (!response.ok) {
     throw new Error('영화 검색에 실패했습니다.');
