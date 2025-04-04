@@ -8,6 +8,10 @@ import style from './_components/MoviesList.module.css'
 export default function Home() {
   return (
     <div className={style.container}>
+        <div>
+        <span className='blur'></span>
+        <span className='blur'></span>
+        </div>
         <section>
             지금 가장 추천하는 영화
             <MovieReco/>
