@@ -1,9 +1,13 @@
 import MovieItem from "@/components/movie-Item";
-import React, from "react";
+import React from "react";
 import style from "./page.module.css";
 import { MovieData } from "@/types";
 
-export default async function Search({searchParams}: {searchParams: {q: string}}) {
+export default async function Search({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>;
+}) {
   const { q } = await searchParams;
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_SERVER_URL}/movie/search?q=${q}`,
@@ -13,7 +17,7 @@ export default async function Search({searchParams}: {searchParams: {q: string}}
   if (!response.ok) {
     throw new Error("네트워크 응답이 올바르지 않습니다.");
   }
-  const movies : MovieData[] = await response.json();
+  const movies: MovieData[] = await response.json();
 
   return (
     <div>
