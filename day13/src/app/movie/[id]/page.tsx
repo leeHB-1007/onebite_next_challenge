@@ -2,6 +2,18 @@ import React from "react";
 import { MovieData } from "@/types";
 import style from "./page.module.css";
 
+export async function generateStaticParams() {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/movie`, {cache: "force-cache"});
+    if (!response.ok) {
+      throw new Error("네트워크 응답이 올바르지 않습니다.");
+    }
+    const movies: MovieData[] = await response.json();
+
+    return movies.map((movie) => ({
+      id: movie.id.toString(),
+    }));
+}
+
 export default async function MovieDetailClient({ params }: { params: Promise<{id: string}>}) {
     const { id } = await params;
   const response = await fetch(
