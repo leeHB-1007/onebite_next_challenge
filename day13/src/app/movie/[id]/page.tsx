@@ -2,7 +2,7 @@ import React from "react";
 import { MovieData } from "@/types";
 import style from "./page.module.css";
 
-export default async function MovieDetailClient({ params }: { params: {id: string}}) {
+export default async function MovieDetailClient({ params }: { params: Promise<{id: string}>}) {
     const { id } = await params;
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_SERVER_URL}/movie/${id}`,
