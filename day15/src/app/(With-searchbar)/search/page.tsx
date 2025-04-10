@@ -1,33 +1,36 @@
 import MovieItem from "@/components/movie-Item";
-import React from "react";
-import style from "./page.module.css";
 import { MovieData } from "@/types";
+import style from "./page.module.css";
 import { delay } from "@/lib/delay";
+import { Suspense } from "react";
+import MovieListSkeleton from "@/app/(With-searchbar)/_components/skeleton/movieIistSKList";
 
-export default async function Search({
+async function SearchResult({ q }: { q: string }) {
+  await delay(1000);
+  const response = await fetch(`http://localhost:12345/movie/search?q=${q}`, {
+    cache: "force-cache",
+  });
+  if (!response.ok) {
+    return <div>오류가 발생했습니다...</div>;
+  }
+
+  const movies: MovieData[] = await response.json();
+
+  return movies.map((movie) => <MovieItem key={movie.id} {...movie} />);
+}
+
+export default async function Page({
   searchParams,
 }: {
   searchParams: Promise<{ q?: string }>;
 }) {
-  await delay(1500) 
   const { q } = await searchParams;
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/movie/search?q=${q}`,
-    { cache: "force-cache" }
-  );
-  // 영화 검색 실행
-  if (!response.ok) {
-    throw new Error("네트워크 응답이 올바르지 않습니다.");
-  }
-  const movies: MovieData[] = await response.json();
 
   return (
-    <div>
-      <div className={style.container}>
-        {movies.map((movie) => (
-          <MovieItem key={movie.id} {...movie} />
-        ))}
-      </div>
+    <div className={style.container}>
+      <Suspense key={q || ""} fallback={<MovieListSkeleton count={10} />}>
+        <SearchResult q={q || ""} />
+      </Suspense>
     </div>
   );
 }
