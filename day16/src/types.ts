@@ -1,4 +1,4 @@
-export interface MovieData {
+export default interface MovieData {
     id: number;
     title: string;
     subTitle: string;
@@ -9,3 +9,12 @@ export interface MovieData {
     runtime: number;
     posterImgUrl: string;
   }
+
+
+  export interface ReviewData {
+    id: number;
+    content: string;
+    author: string;
+    createdAt: string;
+    movieId: number;
+}
