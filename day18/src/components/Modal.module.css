@@ -1,0 +1,25 @@
+.modal {
+  width: 80%;
+  max-width: 700px;
+  background-color: black;
+  padding: 20px 20px;
+  margin: 20px auto;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  border: 1px solid rgb(63, 63, 63);
+  overflow-y: auto;
+  
+  /* Chrome, Safari, Opera용 스크롤바 숨기기 */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* IE, Edge, Firefox용 */
+  -ms-overflow-style: none; /* IE, Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.7);
+}

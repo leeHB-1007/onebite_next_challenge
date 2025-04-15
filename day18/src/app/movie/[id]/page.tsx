@@ -3,7 +3,6 @@ import MovieData from "@/types";
 import style from "./page.module.css";
 import { ReviewEditor } from "./components/ReviewEditor";
 import ReviewList from "./components/ReviewList";
-import Image from "next/image";
 
 export async function generateStaticParams() {
   const response = await fetch(
@@ -36,7 +35,7 @@ async function MovieDetailClient({ movieId }: { movieId: string }) {
         className={style.cover_img_container}
         style={{ backgroundImage: `url('${movie.posterImgUrl}')` }}
       >
-        <Image src={movie.posterImgUrl} alt={movie.title} />
+        <img src={movie.posterImgUrl} alt={movie.title} />
       </div>
       <div className={style.info_container}>
         <div>
