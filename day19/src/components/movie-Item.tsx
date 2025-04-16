@@ -1,6 +1,6 @@
 import MovieData from "@/types";
 import Link from "next/link";
-import style from "./movie-item.module.css";
+import style from "./movie-Item.module.css";
 import Image from "next/image";
 
 export default function MovieItem(props: MovieData) {
