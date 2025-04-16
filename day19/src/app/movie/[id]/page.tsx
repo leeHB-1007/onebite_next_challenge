@@ -3,6 +3,26 @@ import MovieData from "@/types";
 import style from "./page.module.css";
 import { ReviewEditor } from "./components/ReviewEditor";
 import ReviewList from "./components/ReviewList";
+import Image from "next/image";
+import { Metadata } from "next";
+
+
+export async function generateMetadata({
+    params,
+  }: {
+    params: Promise<{ id: string }>;
+  }) : Promise<Metadata> {
+      const { id } = await params;
+    return {
+      title: `한입 시네마 : ${id}`,
+      description: `한입 시네마에 등록된 ${id}}를 만나보세요`,
+      openGraph: {
+          title: `한입 시네마 : ${id}`,
+          description: `한입 시네마에 등록된 ${id}}을 만나보세요`,
+        images: ["/thumbnail.png"],
+      },
+    };
+  }
 
 export async function generateStaticParams() {
   const response = await fetch(
@@ -35,7 +55,7 @@ async function MovieDetailClient({ movieId }: { movieId: string }) {
         className={style.cover_img_container}
         style={{ backgroundImage: `url('${movie.posterImgUrl}')` }}
       >
-        <img src={movie.posterImgUrl} alt={movie.title} />
+        <Image src={movie.posterImgUrl} alt={movie.title} width={244} height={350} />
       </div>
       <div className={style.info_container}>
         <div>

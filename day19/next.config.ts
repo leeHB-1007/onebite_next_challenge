@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+    images: {
+        domains: ['search.pstatic.net']
+    },
     webpack: (config, { isServer }) => {
     	if (isServer) {
           if (Array.isArray(config.resolve.alias))

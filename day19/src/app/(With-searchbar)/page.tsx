@@ -4,6 +4,18 @@ import MovieItem from "@/components/movie-Item";
 import { delay } from "@/lib/delay";
 import { Suspense } from "react";
 import MovieListSkeleton from "./_components/skeleton/movieIistSKList";
+import { Metadata } from "next";
+
+
+export const metadata : Metadata = {
+    title: "한입 시네마",
+    description: "한입 시네마에 등록된 영화들을 만나보세요",
+    openGraph: {
+        title: "한입 시네마",
+        description: "한입 시네마에 등록된 영화들을 만나보세요",
+        images: ["/thumbnail.png"],
+    }
+} 
 
 async function RecoMovies() {
     await delay(1500);
