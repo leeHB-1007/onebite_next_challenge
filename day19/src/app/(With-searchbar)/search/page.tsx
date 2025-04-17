@@ -25,7 +25,7 @@ export async function generateMetadata({
 
 async function SearchResult({ q }: { q: string }) {
   await delay(1000);
-  const response = await fetch(`http://localhost:12345/movie/search?q=${q}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/movie/search?q=${q}`, {
     cache: "force-cache",
   });
   if (!response.ok) {
